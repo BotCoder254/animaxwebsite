@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - VelocityFX</title>
+    <meta name="description" content="Live examples of VelocityFX animations and features">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- VelocityFX CSS -->
+    <link rel="stylesheet" href="../dist/velocityfx.min.css">
+    
+    <!-- Animation Styles -->
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        pre {
+            overflow-x: auto;
+            padding: 1rem;
+            background: #1e1e1e;
+            border-radius: 0.5rem;
+            color: #d4d4d4;
+        }
+        .demo-box {
+            @apply w-32 h-32 flex items-center justify-center text-white font-medium rounded-lg;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            transition: all 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50" vfx-state="scroll:fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2" vfx-hover="scale-up">
+                        <span class="text-2xl font-bold gradient-text">VelocityFX</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#features" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Features</a>
+                    <a href="examples.html" class="text-indigo-600 font-medium" vfx-hover="scale-up">Examples</a>
+                    <a href="docs.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Documentation</a>
+                    <a href="api.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">API</a>
+                    <a href="https://github.com/velocityfx/velocityfx" 
+                       class="gradient-bg px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
+                       vfx-hover="scale-up">
+                        GitHub
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-900" vfx-click="scale-down">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html#features" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Features</a>
+                <a href="examples.html" class="block px-3 py-2 rounded-md text-indigo-600 bg-indigo-50">Examples</a>
+                <a href="docs.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Documentation</a>
+                <a href="api.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">API</a>
+                <a href="https://github.com/velocityfx/velocityfx" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Examples Content -->
+    <div class="pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <!-- Sidebar -->
+                <div class="hidden lg:block lg:col-span-3">
+                    <nav class="sticky top-20 divide-y divide-gray-200" vfx-animate="fade-in">
+                        <div class="pb-8">
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Examples</h3>
+                            <div class="mt-3 space-y-2">
+                                <a href="#entry-animations" class="text-gray-600 hover:text-gray-900 block">Entry Animations</a>
+                                <a href="#hover-effects" class="text-gray-600 hover:text-gray-900 block">Hover Effects</a>
+                                <a href="#click-animations" class="text-gray-600 hover:text-gray-900 block">Click Animations</a>
+                                <a href="#sequence-animations" class="text-gray-600 hover:text-gray-900 block">Sequence Animations</a>
+                                <a href="#parallax-effects" class="text-gray-600 hover:text-gray-900 block">Parallax Effects</a>
+                                <a href="#themes" class="text-gray-600 hover:text-gray-900 block">Themes</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-9">
+                    <div class="prose prose-indigo max-w-none">
+                        <h1 class="gradient-text">Examples</h1>
+                        <p class="lead">Explore all the animations and effects available in VelocityFX.</p>
+
+                        <!-- Entry Animations -->
+                        <section id="entry-animations" class="mt-12">
+                            <h2>Entry Animations</h2>
+                            <p>Animations that trigger when elements enter the viewport.</p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 not-prose mt-8">
+                                <!-- Fade In -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="fade-in">
+                                        fade-in
+                                    </div>
+                                    <pre><code>vfx-animate="fade-in"</code></pre>
+                                </div>
+
+                                <!-- Slide Up -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="slide-up">
+                                        slide-up
+                                    </div>
+                                    <pre><code>vfx-animate="slide-up"</code></pre>
+                                </div>
+
+                                <!-- Slide Down -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="slide-down">
+                                        slide-down
+                                    </div>
+                                    <pre><code>vfx-animate="slide-down"</code></pre>
+                                </div>
+
+                                <!-- Slide Left -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="slide-left">
+                                        slide-left
+                                    </div>
+                                    <pre><code>vfx-animate="slide-left"</code></pre>
+                                </div>
+
+                                <!-- Slide Right -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="slide-right">
+                                        slide-right
+                                    </div>
+                                    <pre><code>vfx-animate="slide-right"</code></pre>
+                                </div>
+
+                                <!-- Zoom In -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="zoom-in">
+                                        zoom-in
+                                    </div>
+                                    <pre><code>vfx-animate="zoom-in"</code></pre>
+                                </div>
+
+                                <!-- Zoom Out -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="zoom-out">
+                                        zoom-out
+                                    </div>
+                                    <pre><code>vfx-animate="zoom-out"</code></pre>
+                                </div>
+
+                                <!-- Flip -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="flip">
+                                        flip
+                                    </div>
+                                    <pre><code>vfx-animate="flip"</code></pre>
+                                </div>
+
+                                <!-- Flip X -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="flip-x">
+                                        flip-x
+                                    </div>
+                                    <pre><code>vfx-animate="flip-x"</code></pre>
+                                </div>
+
+                                <!-- Rotate -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-animate="rotate">
+                                        rotate
+                                    </div>
+                                    <pre><code>vfx-animate="rotate"</code></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Hover Effects -->
+                        <section id="hover-effects" class="mt-16">
+                            <h2>Hover Effects</h2>
+                            <p>Animations that trigger on hover.</p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 not-prose mt-8">
+                                <!-- Scale Up -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="scale-up">
+                                        scale-up
+                                    </div>
+                                    <pre><code>vfx-hover="scale-up"</code></pre>
+                                </div>
+
+                                <!-- Scale Down -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="scale-down">
+                                        scale-down
+                                    </div>
+                                    <pre><code>vfx-hover="scale-down"</code></pre>
+                                </div>
+
+                                <!-- Glow -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="glow">
+                                        glow
+                                    </div>
+                                    <pre><code>vfx-hover="glow"</code></pre>
+                                </div>
+
+                                <!-- Shake -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="shake">
+                                        shake
+                                    </div>
+                                    <pre><code>vfx-hover="shake"</code></pre>
+                                </div>
+
+                                <!-- Pulse -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="pulse">
+                                        pulse
+                                    </div>
+                                    <pre><code>vfx-hover="pulse"</code></pre>
+                                </div>
+
+                                <!-- Wobble -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="wobble">
+                                        wobble
+                                    </div>
+                                    <pre><code>vfx-hover="wobble"</code></pre>
+                                </div>
+
+                                <!-- Float -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="float">
+                                        float
+                                    </div>
+                                    <pre><code>vfx-hover="float"</code></pre>
+                                </div>
+
+                                <!-- Bounce -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-hover="bounce">
+                                        bounce
+                                    </div>
+                                    <pre><code>vfx-hover="bounce"</code></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Click Animations -->
+                        <section id="click-animations" class="mt-16">
+                            <h2>Click Animations</h2>
+                            <p>Animations that trigger on click.</p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 not-prose mt-8">
+                                <!-- Pop -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-click="pop">
+                                        pop
+                                    </div>
+                                    <pre><code>vfx-click="pop"</code></pre>
+                                </div>
+
+                                <!-- Bounce -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-click="bounce">
+                                        bounce
+                                    </div>
+                                    <pre><code>vfx-click="bounce"</code></pre>
+                                </div>
+
+                                <!-- Ripple -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-click="ripple">
+                                        ripple
+                                    </div>
+                                    <pre><code>vfx-click="ripple"</code></pre>
+                                </div>
+
+                                <!-- Flash -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-click="flash">
+                                        flash
+                                    </div>
+                                    <pre><code>vfx-click="flash"</code></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Sequence Animations -->
+                        <section id="sequence-animations" class="mt-16">
+                            <h2>Sequence Animations</h2>
+                            <p>Create staggered animations with sequences.</p>
+
+                            <div class="not-prose mt-8">
+                                <!-- Forward Sequence -->
+                                <div class="space-y-4">
+                                    <div class="grid grid-cols-3 gap-4" vfx-sequence vfx-sequence-delay="200">
+                                        <div class="demo-box" vfx-animate="fade-in">1</div>
+                                        <div class="demo-box" vfx-animate="fade-in">2</div>
+                                        <div class="demo-box" vfx-animate="fade-in">3</div>
+                                    </div>
+                                    <pre><code>&lt;div vfx-sequence vfx-sequence-delay="200"&gt;
+    &lt;div vfx-animate="fade-in"&gt;1&lt;/div&gt;
+    &lt;div vfx-animate="fade-in"&gt;2&lt;/div&gt;
+    &lt;div vfx-animate="fade-in"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+
+                                <!-- Reverse Sequence -->
+                                <div class="space-y-4 mt-8">
+                                    <div class="grid grid-cols-3 gap-4" vfx-sequence vfx-sequence-delay="200" vfx-sequence-direction="reverse">
+                                        <div class="demo-box" vfx-animate="fade-in">1</div>
+                                        <div class="demo-box" vfx-animate="fade-in">2</div>
+                                        <div class="demo-box" vfx-animate="fade-in">3</div>
+                                    </div>
+                                    <pre><code>&lt;div vfx-sequence vfx-sequence-delay="200" vfx-sequence-direction="reverse"&gt;
+    &lt;div vfx-animate="fade-in"&gt;1&lt;/div&gt;
+    &lt;div vfx-animate="fade-in"&gt;2&lt;/div&gt;
+    &lt;div vfx-animate="fade-in"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Parallax Effects -->
+                        <section id="parallax-effects" class="mt-16">
+                            <h2>Parallax Effects</h2>
+                            <p>Add depth with parallax scrolling effects.</p>
+
+                            <div class="not-prose mt-8 space-y-8">
+                                <!-- Slow Parallax -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-parallax="0.5">
+                                        Slow (0.5x)
+                                    </div>
+                                    <pre><code>vfx-parallax="0.5"</code></pre>
+                                </div>
+
+                                <!-- Fast Parallax -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-parallax="1.5">
+                                        Fast (1.5x)
+                                    </div>
+                                    <pre><code>vfx-parallax="1.5"</code></pre>
+                                </div>
+
+                                <!-- 3D Perspective -->
+                                <div class="space-y-4">
+                                    <div class="demo-box" vfx-parallax="1" vfx-parallax-perspective="1000">
+                                        3D Effect
+                                    </div>
+                                    <pre><code>vfx-parallax="1" vfx-parallax-perspective="1000"</code></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Themes -->
+                        <section id="themes" class="mt-16">
+                            <h2>Prebuilt Themes</h2>
+                            <p>Ready-to-use animation themes.</p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 not-prose mt-8">
+                                <!-- Material Theme -->
+                                <div class="space-y-4" vfx-theme="material">
+                                    <div class="demo-box" vfx-hover="scale-up">
+                                        Material
+                                    </div>
+                                    <pre><code>vfx-theme="material"</code></pre>
+                                </div>
+
+                                <!-- Glassmorphism Theme -->
+                                <div class="space-y-4" vfx-theme="glassmorphism">
+                                    <div class="demo-box" vfx-hover="scale-up">
+                                        Glassmorphism
+                                    </div>
+                                    <pre><code>vfx-theme="glassmorphism"</code></pre>
+                                </div>
+
+                                <!-- Neumorphism Theme -->
+                                <div class="space-y-4" vfx-theme="neumorphism">
+                                    <div class="demo-box" vfx-hover="scale-up">
+                                        Neumorphism
+                                    </div>
+                                    <pre><code>vfx-theme="neumorphism"</code></pre>
+                                </div>
+
+                                <!-- Retro Theme -->
+                                <div class="space-y-4" vfx-theme="retro">
+                                    <div class="demo-box" vfx-hover="scale-up">
+                                        Retro
+                                    </div>
+                                    <pre><code>vfx-theme="retro"</code></pre>
+                                </div>
+
+                                <!-- Cyberpunk Theme -->
+                                <div class="space-y-4" vfx-theme="cyberpunk">
+                                    <div class="demo-box" vfx-hover="scale-up">
+                                        Cyberpunk
+                                    </div>
+                                    <pre><code>vfx-theme="cyberpunk"</code></pre>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VelocityFX JS -->
+    <script src="../dist/velocityfx.min.js"></script>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Animation Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Initialize VelocityFX
+            window.VelocityFX.init({
+                    threshold: 0.1,
+                    rootMargin: '20px',
+                    duration: 300,
+                    easing: 'ease-out',
+                debug: true,
+                animations: {
+                    'fade-in': { opacity: [0, 1] },
+                    'slide-up': { transform: ['translateY(30px)', 'translateY(0)'], opacity: [0, 1] },
+                    'slide-down': { transform: ['translateY(-30px)', 'translateY(0)'], opacity: [0, 1] },
+                    'slide-left': { transform: ['translateX(30px)', 'translateX(0)'], opacity: [0, 1] },
+                    'slide-right': { transform: ['translateX(-30px)', 'translateX(0)'], opacity: [0, 1] },
+                    'zoom-in': { transform: ['scale(0.8)', 'scale(1)'], opacity: [0, 1] },
+                    'zoom-out': { transform: ['scale(1.2)', 'scale(1)'], opacity: [0, 1] },
+                    'flip': { transform: ['perspective(400px) rotateY(90deg)', 'perspective(400px) rotateY(0)'], opacity: [0, 1] },
+                    'flip-x': { transform: ['perspective(400px) rotateX(90deg)', 'perspective(400px) rotateX(0)'], opacity: [0, 1] },
+                    'rotate': { transform: ['rotate(-180deg)', 'rotate(0)'], opacity: [0, 1] }
+                },
+                hover: {
+                    'scale-up': { transform: 'scale(1.1)' },
+                    'scale-down': { transform: 'scale(0.9)' },
+                    'glow': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.6)' },
+                    'shake': { animation: 'shake 0.3s ease-in-out' },
+                    'pulse': { animation: 'pulse 0.6s ease-in-out infinite' },
+                    'wobble': { animation: 'wobble 0.6s ease-in-out' },
+                    'float': { animation: 'float 1.5s ease-in-out infinite' },
+                    'bounce': { animation: 'bounce 0.6s ease-in-out' }
+                },
+                click: {
+                    'pop': { animation: 'pop 0.3s ease-out' },
+                    'bounce': { animation: 'bounce 0.4s ease-out' },
+                    'ripple': { animation: 'ripple 0.6s linear' },
+                    'flash': { animation: 'flash 0.3s ease-out' }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - VelocityFX</title>
+    <meta name="description" content="Complete API reference for VelocityFX animation framework">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- VelocityFX CSS -->
+    <link rel="stylesheet" href="../dist/velocityfx.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        pre {
+            overflow-x: auto;
+            padding: 1rem;
+            background: #1e1e1e;
+            border-radius: 0.5rem;
+            color: #d4d4d4;
+        }
+        .method-get { color: #22c55e; }
+        .method-post { color: #3b82f6; }
+        .method-put { color: #f59e0b; }
+        .method-delete { color: #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50" vfx-state="scroll:fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2" vfx-hover="scale-up">
+                        <span class="text-2xl font-bold gradient-text">VelocityFX</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#features" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Features</a>
+                    <a href="examples.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Examples</a>
+                    <a href="docs.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Documentation</a>
+                    <a href="api.html" class="text-indigo-600 font-medium" vfx-hover="scale-up">API</a>
+                    <a href="https://github.com/velocityfx/velocityfx" 
+                       class="gradient-bg px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
+                       vfx-hover="scale-up">
+                        GitHub
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-900" vfx-click="scale-down">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html#features" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Features</a>
+                <a href="examples.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Examples</a>
+                <a href="docs.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Documentation</a>
+                <a href="api.html" class="block px-3 py-2 rounded-md text-indigo-600 bg-indigo-50">API</a>
+                <a href="https://github.com/velocityfx/velocityfx" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- API Content -->
+    <div class="pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <!-- Sidebar -->
+                <div class="hidden lg:block lg:col-span-3">
+                    <nav class="sticky top-20 divide-y divide-gray-200" vfx-animate="fade-in">
+                        <div class="pb-8">
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Core API</h3>
+                            <div class="mt-3 space-y-2">
+                                <a href="#initialization" class="text-gray-600 hover:text-gray-900 block">Initialization</a>
+                                <a href="#configuration" class="text-gray-600 hover:text-gray-900 block">Configuration</a>
+                                <a href="#methods" class="text-gray-600 hover:text-gray-900 block">Methods</a>
+                            </div>
+                        </div>
+                        <div class="py-8">
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Animations</h3>
+                            <div class="mt-3 space-y-2">
+                                <a href="#entry" class="text-gray-600 hover:text-gray-900 block">Entry Animations</a>
+                                <a href="#hover" class="text-gray-600 hover:text-gray-900 block">Hover Effects</a>
+                                <a href="#click" class="text-gray-600 hover:text-gray-900 block">Click Animations</a>
+                                <a href="#sequence" class="text-gray-600 hover:text-gray-900 block">Sequences</a>
+                            </div>
+                        </div>
+                        <div class="py-8">
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Events</h3>
+                            <div class="mt-3 space-y-2">
+                                <a href="#events" class="text-gray-600 hover:text-gray-900 block">Event Handling</a>
+                                <a href="#callbacks" class="text-gray-600 hover:text-gray-900 block">Callbacks</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-9" vfx-sequence vfx-sequence-delay="100">
+                    <div class="prose prose-indigo max-w-none">
+                        <h1 class="gradient-text">API Reference</h1>
+                        
+                        <section id="initialization" class="mt-12" vfx-animate="fade-in">
+                            <h2>Initialization</h2>
+                            <p>Initialize VelocityFX with custom options:</p>
+                            
+                            <pre><code>// Initialize with default options
+const vfx = new VelocityFX();
+
+// Initialize with custom options
+const vfx = new VelocityFX({
+    threshold: 0.1,
+    rootMargin: '20px',
+    duration: 300,
+    easing: 'ease',
+    debug: false
+});</code></pre>
+                        </section>
+
+                        <section id="methods" class="mt-12" vfx-animate="fade-in">
+                            <h2>Methods</h2>
+                            <p>Available methods for controlling animations:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <!-- Method 1 -->
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">animate(element, options)</h3>
+                                        <p class="mt-2 text-gray-600">Manually trigger an animation on an element.</p>
+                                        <pre class="mt-4"><code>vfx.animate(element, {
+    animation: 'fade-in',
+    duration: 300,
+    easing: 'ease-out'
+});</code></pre>
+                                    </div>
+
+                                    <!-- Method 2 -->
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">observe(element)</h3>
+                                        <p class="mt-2 text-gray-600">Start observing an element for visibility changes.</p>
+                                        <pre class="mt-4"><code>vfx.observe(element);</code></pre>
+                                    </div>
+
+                                    <!-- Method 3 -->
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">destroy()</h3>
+                                        <p class="mt-2 text-gray-600">Clean up all observers and event listeners.</p>
+                                        <pre class="mt-4"><code>vfx.destroy();</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="entry" class="mt-12" vfx-animate="fade-in">
+                            <h2>Entry Animations</h2>
+                            <p>Available entry animations and their parameters:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Fade Animations</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>fade-in</code> - Fade from transparent to opaque</li>
+                                            <li><code>fade-out</code> - Fade from opaque to transparent</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>vfx.animate(element, {
+    animation: 'fade-in',
+    opacity: [0, 1],  // [start, end]
+    duration: 300
+});</code></pre>
+                                    </div>
+
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Slide Animations</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>slide-up</code> - Slide up from bottom</li>
+                                            <li><code>slide-down</code> - Slide down from top</li>
+                                            <li><code>slide-left</code> - Slide in from left</li>
+                                            <li><code>slide-right</code> - Slide in from right</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>vfx.animate(element, {
+    animation: 'slide-up',
+    distance: '100px',  // Distance to slide
+    duration: 500
+});</code></pre>
+                                    </div>
+
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Scale and Rotate</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>zoom-in</code> - Scale up from smaller size</li>
+                                            <li><code>zoom-out</code> - Scale down from larger size</li>
+                                            <li><code>flip</code> - Flip on Y-axis</li>
+                                            <li><code>flip-x</code> - Flip on X-axis</li>
+                                            <li><code>rotate</code> - Rotate into view</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>vfx.animate(element, {
+    animation: 'flip',
+    degrees: 180,
+    duration: 600
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="hover" class="mt-12" vfx-animate="fade-in">
+                            <h2>Hover Effects</h2>
+                            <p>Available hover animations and their parameters:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Scale Effects</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>scale-up</code> - Scale up on hover</li>
+                                            <li><code>scale-down</code> - Scale down on hover</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>vfx.hover(element, {
+    animation: 'scale-up',
+    scale: 1.1,  // Target scale
+    duration: 200
+});</code></pre>
+                                    </div>
+
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Visual Effects</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>glow</code> - Glowing effect</li>
+                                            <li><code>shake</code> - Shake animation</li>
+                                            <li><code>pulse</code> - Pulsing effect</li>
+                                            <li><code>wobble</code> - Wobble animation</li>
+                                            <li><code>float</code> - Floating effect</li>
+                                            <li><code>bounce</code> - Bouncing effect</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>vfx.hover(element, {
+    animation: 'glow',
+    intensity: 0.5,  // Effect intensity
+    duration: 300
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="click" class="mt-12" vfx-animate="fade-in">
+                            <h2>Click Animations</h2>
+                            <p>Available click animations and their parameters:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Click Effects</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>pop</code> - Pop effect on click</li>
+                                            <li><code>bounce</code> - Bounce effect on click</li>
+                                            <li><code>ripple</code> - Ripple effect from click point</li>
+                                            <li><code>flash</code> - Quick flash effect</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>vfx.click(element, {
+    animation: 'ripple',
+    color: '#6366f1',  // Ripple color
+    duration: 400
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="sequence" class="mt-12" vfx-animate="fade-in">
+                            <h2>Sequence Animations</h2>
+                            <p>Control and customize sequence animations:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Sequence Configuration</h3>
+                                        <pre class="mt-4"><code>vfx.sequence(container, {
+    delay: 200,  // Delay between items
+    direction: 'forward',  // or 'reverse'
+    stagger: 'linear',  // or 'random'
+    children: '.item'  // Selector for sequence items
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="events" class="mt-12" vfx-animate="fade-in">
+                            <h2>Events</h2>
+                            <p>Available events and their payloads:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Animation Events</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>vfx:animate:start</code> - Animation started</li>
+                                            <li><code>vfx:animate:end</code> - Animation completed</li>
+                                            <li><code>vfx:animate:cancel</code> - Animation cancelled</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>document.addEventListener('vfx:animate:start', (event) => {
+    const { element, animation, options } = event.detail;
+    console.log(`${animation} started on`, element);
+});</code></pre>
+                                    </div>
+
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Interaction Events</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>vfx:hover:start</code> - Hover started</li>
+                                            <li><code>vfx:hover:end</code> - Hover ended</li>
+                                            <li><code>vfx:click</code> - Click animation triggered</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>element.addEventListener('vfx:hover:start', (event) => {
+    const { effect, options } = event.detail;
+    console.log(`Hover effect ${effect} started`);
+});</code></pre>
+                                    </div>
+
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Sequence Events</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>vfx:sequence:start</code> - Sequence started</li>
+                                            <li><code>vfx:sequence:progress</code> - Sequence progress</li>
+                                            <li><code>vfx:sequence:end</code> - Sequence completed</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>container.addEventListener('vfx:sequence:progress', (event) => {
+    const { current, total, progress } = event.detail;
+    console.log(`Sequence progress: ${progress}%`);
+});</code></pre>
+                                    </div>
+
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Observer Events</h3>
+                                        <ul class="mt-4 space-y-2">
+                                            <li><code>vfx:visible</code> - Element entered viewport</li>
+                                            <li><code>vfx:hidden</code> - Element left viewport</li>
+                                            <li><code>vfx:parallax</code> - Parallax scroll update</li>
+                                        </ul>
+                                        <pre class="mt-4"><code>element.addEventListener('vfx:visible', (event) => {
+    const { ratio } = event.detail;
+    console.log(`Element visibility: ${ratio}`);
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="callbacks" class="mt-12" vfx-animate="fade-in">
+                            <h2>Callbacks</h2>
+                            <p>Available callback functions for animations:</p>
+                            
+                            <div class="not-prose">
+                                <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900">Animation Callbacks</h3>
+                                        <pre class="mt-4"><code>vfx.animate(element, {
+    animation: 'fade-in',
+    onStart: (element) => {
+        console.log('Animation started');
+    },
+    onProgress: (element, progress) => {
+        console.log(`Progress: ${progress}%`);
+    },
+    onComplete: (element) => {
+        console.log('Animation completed');
+    },
+    onCancel: (element) => {
+        console.log('Animation cancelled');
+    }
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- VelocityFX JS -->
+    <script src="../dist/velocityfx.min.js"></script>
+</body>
+</html> 

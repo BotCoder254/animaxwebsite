@@ -1,0 +1,84 @@
+/* Base styles */
+.demo-box {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: all 0.3s ease-out;
+}
+
+/* Entry Animations */
+[vfx-animate] {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+[vfx-animate].vfx-active {
+    opacity: 1;
+    transform: none !important;
+}
+
+/* Hover Effects */
+[vfx-hover] {
+    transition: all 0.3s ease-out;
+}
+
+/* Click Animations */
+[vfx-click] {
+    position: relative;
+    overflow: hidden;
+}
+
+.vfx-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+/* Sequence Animations */
+[vfx-sequence] > * {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+[vfx-sequence] > *.vfx-active {
+    opacity: 1;
+}
+
+/* Parallax Effects */
+[vfx-parallax] {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Theme Styles */
+[vfx-theme="material"] .demo-box {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[vfx-theme="glassmorphism"] .demo-box {
+    background: rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[vfx-theme="neumorphism"] .demo-box {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
+}
+
+[vfx-theme="retro"] .demo-box {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0 #000;
+}
+
+[vfx-theme="cyberpunk"] .demo-box {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    border: 2px solid #00ff00;
+    text-shadow: 2px 2px #ff00ff;
+}

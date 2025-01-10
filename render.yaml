@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: velocityfx-website
+    env: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: free
+    branch: main
+    numInstances: 1
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+    buildCommand: npm run build
+    startCommand: serve -s dist -l 3000 

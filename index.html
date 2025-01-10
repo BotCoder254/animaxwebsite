@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VelocityFX - Modern Animation Framework</title>
+    <meta name="description" content="VelocityFX is a lightweight and powerful animation framework for modern web applications">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- VelocityFX CSS -->
+    <link rel="stylesheet" href="../dist/velocityfx.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        .hero-pattern {
+            background-image: radial-gradient(#e0e7ff 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .feature-card {
+            @apply bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:border-indigo-200 transition-colors;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50" vfx-state="scroll:fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2" vfx-hover="scale-up">
+                        <span class="text-2xl font-bold gradient-text">VelocityFX</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Features</a>
+                    <a href="examples.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Examples</a>
+                    <a href="docs.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">Documentation</a>
+                    <a href="api.html" class="text-gray-600 hover:text-gray-900 font-medium" vfx-hover="scale-up">API</a>
+                    <a href="https://github.com/velocityfx/velocityfx" 
+                       class="gradient-bg px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
+                       vfx-hover="scale-up">
+                        GitHub
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-900" vfx-click="scale-down">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#features" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Features</a>
+                <a href="examples.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Examples</a>
+                <a href="docs.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">Documentation</a>
+                <a href="api.html" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">API</a>
+                <a href="https://github.com/velocityfx/velocityfx" class="block px-3 py-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 hero-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold gradient-text mb-6" vfx-animate="fade-in">
+                    Beautiful Animations Made Simple
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto" vfx-animate="fade-in" vfx-animate-delay="200">
+                    VelocityFX is a lightweight and powerful animation framework that makes it easy to add beautiful animations to your web applications.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4" vfx-animate="fade-in" vfx-animate-delay="400">
+                    <a href="docs.html" class="gradient-bg px-8 py-3 rounded-lg text-white font-medium hover:opacity-90 transition-opacity" vfx-hover="scale-up">
+                        Get Started
+                    </a>
+                    <a href="examples.html" class="bg-white px-8 py-3 rounded-lg text-gray-900 font-medium border border-gray-200 hover:border-indigo-200 transition-colors" vfx-hover="scale-up">
+                        View Examples
+                    </a>
+                </div>
+            </div>
+
+            <!-- Code Preview -->
+            <div class="mt-16 max-w-3xl mx-auto" vfx-animate="fade-in" vfx-animate-delay="600">
+                <div class="bg-gray-900 rounded-lg p-6 shadow-xl">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <pre class="text-gray-300 font-mono text-sm"><code>&lt;!-- Add beautiful animations with simple HTML attributes --&gt;
+&lt;div vfx-animate="fade-in"&gt;
+    &lt;h1&gt;Welcome to my website&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;button vfx-hover="scale-up"&gt;
+    Hover me!
+&lt;/button&gt;
+
+&lt;div vfx-sequence vfx-sequence-delay="200"&gt;
+    &lt;div vfx-animate="slide-up"&gt;First&lt;/div&gt;
+    &lt;div vfx-animate="slide-up"&gt;Second&lt;/div&gt;
+    &lt;div vfx-animate="slide-up"&gt;Third&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold gradient-text mb-4" vfx-animate="fade-in">
+                    Powerful Features
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto" vfx-animate="fade-in" vfx-animate-delay="200">
+                    Everything you need to create stunning animations for your web applications.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" vfx-sequence vfx-sequence-delay="200">
+                <!-- Feature 1 -->
+                <div class="feature-card" vfx-animate="fade-in">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+                    <p class="text-gray-600">Optimized for performance with minimal impact on your application's speed.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card" vfx-animate="fade-in">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Flexible & Customizable</h3>
+                    <p class="text-gray-600">Easily customize animations with simple HTML attributes and CSS variables.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card" vfx-animate="fade-in">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Production Ready</h3>
+                    <p class="text-gray-600">Built with modern best practices and thoroughly tested for reliability.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card" vfx-animate="fade-in">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Zero Dependencies</h3>
+                    <p class="text-gray-600">No external dependencies required. Just include and start animating.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card" vfx-animate="fade-in">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Accessibility First</h3>
+                    <p class="text-gray-600">Built with accessibility in mind, including reduced motion support.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card" vfx-animate="fade-in">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Easy Configuration</h3>
+                    <p class="text-gray-600">Simple configuration options to customize timing, easing, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-12 text-center text-white" vfx-animate="fade-in">
+                <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+                <p class="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+                    Add beautiful animations to your website in minutes with VelocityFX.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="docs.html" class="bg-white px-8 py-3 rounded-lg text-indigo-600 font-medium hover:bg-opacity-90 transition-opacity" vfx-hover="scale-up">
+                        Read the Docs
+                    </a>
+                    <a href="https://github.com/velocityfx/velocityfx" class="bg-indigo-500 px-8 py-3 rounded-lg text-white font-medium hover:bg-opacity-90 transition-opacity" vfx-hover="scale-up">
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- VelocityFX JS -->
+    <script src="../dist/velocityfx.min.js"></script>
+</body>
+</html> 
